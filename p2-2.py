@@ -1,6 +1,12 @@
+print("start day")
 year = int(input())
 month = int(input())
 day = int(input())
+print("end day")
+end_year = int(input())
+end_month = int(input())
+end_day = int(input())
+
 def isLeepYear(y):
     if y % 4 != 0:
         return False
@@ -35,7 +41,18 @@ def DaysFromNewYears(y,m,d):
         days = days + 1
     return days
 
-print(YearDays(year))
-print(isLeepYear(year))
-print(MonthDays(year,month))
-print(DaysFromNewYears(year,month,day))
+def daysDistance(y,m,d,ey,em,ed):
+    result = 0
+    days = DaysFromNewYears(y,m,d)
+    end_days = DaysFromNewYears(ey,em,ed)
+    if ey-y > 0 :
+        for i in range(1,ey-y):
+            result += YearDays(ey-i)
+        result += YearDays(y) - days + end_days   
+    else :
+        result = end_days - days
+    return result
+
+
+
+
